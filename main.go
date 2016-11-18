@@ -12,15 +12,25 @@ import (
 func main() {
 	r := gin.Default()
 
-	uc := controllers.NewUserController(getDB())
-	r.GET("/user/:id", uc.GetUser)
-	r.POST("/user/", uc.CreateUser)
+	db := getDB()
+
+	// security
+	sc := controllers.NewSecurityController(db)
+	r.GET("/login", sc.Login)
+
+	authed := r.Group("/", sc.SecureHandler)
+
+	// user
+	uc := controllers.NewUserController(db)
+
+	authed.GET("/user/:id", uc.GetUser)
+	authed.POST("/user", uc.CreateUser)
 
 	r.Run(":" + os.Getenv("PORT"))
 }
 
 func getDB() *mgo.Database {
-	return getSession().DB("coffeeapp")
+	return getSession().DB("coffeeround")
 }
 
 func getSession() *mgo.Session {

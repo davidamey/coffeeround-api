@@ -27,16 +27,14 @@ func (uc *userController) GetUser(c *gin.Context) {
 	id := c.Param("id")
 
 	if !bson.IsObjectIdHex(id) {
-		c.JSON(http.StatusBadRequest, "Invalid id")
-		return
+		c.AbortWithStatus(http.StatusBadRequest)
 	}
 
 	oid := bson.ObjectIdHex(id)
 	u := models.User{}
 
 	if err := uc.db.C("users").FindId(oid).One(&u); err != nil {
-		c.JSON(http.StatusNotFound, err.Error())
-		return
+		c.AbortWithError(http.StatusNotFound, err)
 	}
 
 	c.JSON(200, u)
@@ -46,8 +44,7 @@ func (uc *userController) CreateUser(c *gin.Context) {
 	u := models.User{}
 
 	if c.Bind(&u) != nil {
-		c.JSON(http.StatusBadRequest, "Bad data")
-		return
+		c.AbortWithStatus(http.StatusBadRequest)
 	}
 
 	u.Id = bson.NewObjectId()
