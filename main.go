@@ -1,23 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"log"
-	"net/http"
 	"os"
 
-	"github.com/julienschmidt/httprouter"
+	"github.com/davidamey/coffeeround-api/controllers"
+	"github.com/gin-gonic/gin"
 )
 
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "Welcome!\n")
-}
-
 func main() {
-	router := httprouter.New()
-	router.GET("/", Index)
+	r := gin.Default()
 
-	port := os.Getenv("PORT")
+	uc := controllers.NewUserController()
+	r.GET("/user/:id", uc.GetUser)
 
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	r.Run(":" + os.Getenv("PORT"))
 }
