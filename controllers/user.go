@@ -26,31 +26,33 @@ func NewUserController(db *mgo.Database) UserController {
 
 func (uc *userController) GetUsers(c *gin.Context) {
 	users := [5]models.User{
-		models.User{Name: "Alice", total: 0},
-		models.User{Name: "Basil", total: 1},
-		models.User{Name: "Chris", total: 2},
-		models.User{Name: "David", total: 3},
-		models.User{Name: "Elvis", total: 4},
+		models.User{Name: "Alice", Total: 0},
+		models.User{Name: "Basil", Total: 1},
+		models.User{Name: "Chris", Total: 2},
+		models.User{Name: "David", Total: 3},
+		models.User{Name: "Elvis", Total: 4},
 	}
 
 	c.JSON(200, users)
 }
 
 func (uc *userController) GetUser(c *gin.Context) {
-	id := c.Param("id")
+	c.JSON(200, models.User{Name: "David", Total: 3})
 
-	if !bson.IsObjectIdHex(id) {
-		c.AbortWithStatus(http.StatusBadRequest)
-	}
+	// id := c.Param("id")
 
-	oid := bson.ObjectIdHex(id)
-	u := models.User{}
+	// if !bson.IsObjectIdHex(id) {
+	// 	c.AbortWithStatus(http.StatusBadRequest)
+	// }
 
-	if err := uc.db.C("users").FindId(oid).One(&u); err != nil {
-		c.AbortWithError(http.StatusNotFound, err)
-	}
+	// oid := bson.ObjectIdHex(id)
+	// u := models.User{}
 
-	c.JSON(200, u)
+	// if err := uc.db.C("users").FindId(oid).One(&u); err != nil {
+	// 	c.AbortWithError(http.StatusNotFound, err)
+	// }
+
+	// c.JSON(200, u)
 }
 
 func (uc *userController) CreateUser(c *gin.Context) {

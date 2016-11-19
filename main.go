@@ -31,7 +31,8 @@ func main() {
 }
 
 func getDB() *mgo.Database {
-	return getSession().DB("coffeeround")
+	return nil
+	// return getSession().DB("coffeeround")
 }
 
 func getSession() *mgo.Session {
