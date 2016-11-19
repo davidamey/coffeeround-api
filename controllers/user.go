@@ -11,6 +11,7 @@ import (
 )
 
 type UserController interface {
+	GetUsers(*gin.Context)
 	GetUser(*gin.Context)
 	CreateUser(*gin.Context)
 }
@@ -21,6 +22,18 @@ type userController struct {
 
 func NewUserController(db *mgo.Database) UserController {
 	return &userController{db}
+}
+
+func (uc *userController) GetUsers(c *gin.Context) {
+	users := [5]models.User{
+		models.User{Name: "Alice", total: 0},
+		models.User{Name: "Basil", total: 1},
+		models.User{Name: "Chris", total: 2},
+		models.User{Name: "David", total: 3},
+		models.User{Name: "Elvis", total: 4},
+	}
+
+	c.JSON(200, users)
 }
 
 func (uc *userController) GetUser(c *gin.Context) {

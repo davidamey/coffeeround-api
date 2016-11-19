@@ -23,6 +23,7 @@ func main() {
 	// user
 	uc := controllers.NewUserController(db)
 
+	authed.GET("/user", uc.GetUsers)
 	authed.GET("/user/:id", uc.GetUser)
 	authed.POST("/user", uc.CreateUser)
 

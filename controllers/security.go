@@ -39,11 +39,13 @@ func (sc *securityController) Login(c *gin.Context) {
 }
 
 func (sc *securityController) SecureHandler(c *gin.Context) {
-	err := jwtMiddleware.CheckJWT(c.Writer, c.Request)
+	c.Next()
 
-	if err != nil {
-		c.AbortWithStatus(401)
-	} else {
-		c.Next()
-	}
+	// err := jwtMiddleware.CheckJWT(c.Writer, c.Request)
+
+	// if err != nil {
+	// 	c.AbortWithStatus(401)
+	// } else {
+	// 	c.Next()
+	// }
 }
