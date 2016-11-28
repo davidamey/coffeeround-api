@@ -3,16 +3,10 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "7G7ADsNRwBcyfkJyTrX1oW4I0Rs=",
-			"path": "github.com/auth0/go-jwt-middleware",
-			"revision": "f3f7de3b9e394e3af3b88e1b9457f6f71d1ae0ac",
-			"revisionTime": "2016-04-21T21:57:38Z"
-		},
-		{
-			"checksumSHA1": "2Fy1Y6Z3lRRX1891WF/+HT4XS2I=",
-			"path": "github.com/dgrijalva/jwt-go",
-			"revision": "9ed569b5d1ac936e6494082958d63a6aa4fff99a",
-			"revisionTime": "2016-11-01T19:39:35Z"
+			"checksumSHA1": "YzLWxUSlzQDRcAZJaxRPVCFjGUk=",
+			"path": "github.com/ericchiang/oidc",
+			"revision": "11f62933e071f13d78454c4d8907f371d7433f57",
+			"revisionTime": "2016-09-08T14:33:37Z"
 		},
 		{
 			"checksumSHA1": "RDDo6zqKb6Mpa4EOFv0RT8ryXvQ=",
@@ -39,28 +33,40 @@
 			"revisionTime": "2016-11-17T03:31:26Z"
 		},
 		{
-			"checksumSHA1": "g/V4qrXjUGG9B+e3hB+4NAYJ5Gs=",
-			"path": "github.com/gorilla/context",
-			"revision": "08b5f424b9271eedf6f9f0ce86cb9396ed337a42",
-			"revisionTime": "2016-08-17T18:46:32Z"
-		},
-		{
-			"checksumSHA1": "hBHI8hVbOi3Iq9TfLDxKe7iWoxM=",
-			"comment": "v1.1-38-g4563b0b",
-			"path": "github.com/julienschmidt/httprouter",
-			"revision": "4563b0ba73e4db6c6423b60a26f3cadd2e9a1ec9"
-		},
-		{
 			"checksumSHA1": "b0T0Hzd+zYk+OCDTFMps+jwa/nY=",
 			"path": "github.com/manucorporat/sse",
 			"revision": "ee05b128a739a0fb76c7ebd3ae4810c1de808d6d",
 			"revisionTime": "2016-01-26T18:01:36Z"
 		},
 		{
+			"checksumSHA1": "WwnvMJM+0RyV1j7H0sy/+Agfe3Y=",
+			"path": "github.com/pquerna/cachecontrol",
+			"revision": "c97913dcbd76de40b051a9b4cd827f7eaeb7a868",
+			"revisionTime": "2016-04-21T23:16:12Z"
+		},
+		{
+			"checksumSHA1": "3cmO6a0KjdpnIlVbq4CcJxbHyQs=",
+			"path": "github.com/pquerna/cachecontrol/cacheobject",
+			"revision": "c97913dcbd76de40b051a9b4cd827f7eaeb7a868",
+			"revisionTime": "2016-04-21T23:16:12Z"
+		},
+		{
 			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
 			"path": "golang.org/x/net/context",
 			"revision": "4971afdc2f162e82d185353533d3cf16188a9f4e",
 			"revisionTime": "2016-11-15T21:05:04Z"
+		},
+		{
+			"checksumSHA1": "XH7CgbL5Z8COUc+MKrYqS3FFosY=",
+			"path": "golang.org/x/oauth2",
+			"revision": "d5040cddfc0da40b408c9a1da4728662435176a9",
+			"revisionTime": "2016-11-03T22:50:36Z"
+		},
+		{
+			"checksumSHA1": "D3v/aqfB9swlaZcSksCoF+lbOqo=",
+			"path": "golang.org/x/oauth2/internal",
+			"revision": "d5040cddfc0da40b408c9a1da4728662435176a9",
+			"revisionTime": "2016-11-03T22:50:36Z"
 		},
 		{
 			"checksumSHA1": "39V1idWER42Lmcmg2Uy40wMzOlo=",
@@ -97,6 +103,24 @@
 			"path": "gopkg.in/mgo.v2/internal/scram",
 			"revision": "3f83fa5005286a7fe593b055f0d7771a7dce4655",
 			"revisionTime": "2016-08-18T02:01:20Z"
+		},
+		{
+			"checksumSHA1": "4FonadPMjBW33hDoyy+ZtBmU/bc=",
+			"path": "gopkg.in/square/go-jose.v1",
+			"revision": "aa2e30fdd1fe9dd3394119af66451ae790d50e0d",
+			"revisionTime": "2016-09-23T00:08:11Z"
+		},
+		{
+			"checksumSHA1": "vSlztt3rfYwwDDKEiqUDWXl2LGw=",
+			"path": "gopkg.in/square/go-jose.v1/cipher",
+			"revision": "aa2e30fdd1fe9dd3394119af66451ae790d50e0d",
+			"revisionTime": "2016-09-23T00:08:11Z"
+		},
+		{
+			"checksumSHA1": "UYvcpB3og7YJHbRu4feZFxXAU/A=",
+			"path": "gopkg.in/square/go-jose.v1/json",
+			"revision": "aa2e30fdd1fe9dd3394119af66451ae790d50e0d",
+			"revisionTime": "2016-09-23T00:08:11Z"
 		},
 		{
 			"checksumSHA1": "yV+2de12Q/t09hBGYGKEOFr1/zc=",
