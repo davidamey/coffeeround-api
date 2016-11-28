@@ -16,13 +16,12 @@ func main() {
 
 	// security
 	sc := controllers.NewSecurityController(db)
-	r.GET("/login", sc.Login)
+	// r.GET("/login", sc.Login)
+	// r.POST("/tokenSignIn", sc.TokenSignIn)
 
 	authed := r.Group("/", sc.SecureHandler)
 
-	// user
 	uc := controllers.NewUserController(db)
-
 	authed.GET("/user", uc.GetUsers)
 	authed.GET("/user/:id", uc.GetUser)
 	authed.POST("/user", uc.CreateUser)

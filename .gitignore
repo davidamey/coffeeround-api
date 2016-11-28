@@ -25,3 +25,6 @@ _testmain.go
 
 # Compiled binary
 coffeeround-api
+
+# Local environment vars
+.env
