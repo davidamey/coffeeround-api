@@ -6,25 +6,25 @@ import (
 	mgo "gopkg.in/mgo.v2"
 
 	"github.com/davidamey/coffeeround-api/controllers"
+	"github.com/davidamey/coffeeround-api/handlers"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
 
-	db := getDB()
+	// db := getDB()
 
-	// security
-	sc := controllers.NewSecurityController(db)
-	// r.GET("/login", sc.Login)
-	// r.POST("/tokenSignIn", sc.TokenSignIn)
+	sc := controllers.NewSecurityController()
+	r.POST("/login", sc.Login)
 
-	authed := r.Group("/", sc.SecureHandler)
+	authed := r.Group("/", handlers.Secure())
 
-	uc := controllers.NewUserController(db)
+	uc := controllers.NewUserController()
 	authed.GET("/user", uc.GetUsers)
 	authed.GET("/user/:id", uc.GetUser)
-	authed.POST("/user", uc.CreateUser)
+
+	rc := contollers.NewRoundController()
 
 	r.Run(":" + os.Getenv("PORT"))
 }
