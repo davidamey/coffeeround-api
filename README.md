@@ -1,9 +1,10 @@
-[![Build Status](https://travis-ci.org/davidamey/coffeeround-api.svg?branch=master)](https://travis-ci.org/davidamey/coffeeround-api)
+
 
 # coffeeround-api
 backend for coffee-round tracking app
 
 ## Current API
+```
 Update my picture / name }
 Get JWT token            } POST /login
 Get my details?          }
@@ -16,3 +17,4 @@ Edit a round?            } PUT  /round/:id
 
 Get all users            } GET  /user
 Get user details         } GET  /user/:id
+```
