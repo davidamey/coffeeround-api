@@ -3,6 +3,8 @@ package controllers
 import (
 	"net/http"
 
+	"gopkg.in/mgo.v2/bson"
+
 	"github.com/davidamey/coffeeround-api/models"
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +30,15 @@ func (uc *userController) GetUsers(c *gin.Context) {
 }
 
 func (uc *userController) GetUser(c *gin.Context) {
-	id := c.Param("id")
+	idHex := c.Param("id")
+
+	if !bson.IsObjectIdHex(idHex) {
+		c.String(http.StatusBadRequest, "Invalid id")
+		c.Abort()
+		return
+	}
+
+	id := bson.ObjectIdHex(idHex)
 
 	ds := models.GetDataStore()
 	defer ds.Close()

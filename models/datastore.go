@@ -10,7 +10,7 @@ import (
 
 type DataStore interface {
 	GetUsers() *[]User
-	GetUser(string) (*User, bool)
+	GetUser(bson.ObjectId) (*User, bool)
 	UpsertUser(string, string, string) (bson.ObjectId, error)
 	Close()
 }
@@ -60,7 +60,7 @@ func (ds *dataStore) GetUsers() *[]User {
 	return &users
 }
 
-func (ds *dataStore) GetUser(id string) (*User, bool) {
+func (ds *dataStore) GetUser(id bson.ObjectId) (*User, bool) {
 	var u User
 	if err := ds.userCol().FindId(id).One(&u); err != nil {
 		return nil, false
@@ -74,7 +74,7 @@ func (ds *dataStore) UpsertUser(gID, name, picture string) (id bson.ObjectId, er
 	if err := ds.userCol().Find(bson.M{"gid": gID}).One(&u); err != nil {
 		spew.Dump(err)
 		if err == mgo.ErrNotFound {
-			log.Println("User not found - creating new one")
+			log.Printf("User '%s' not found - creating new one\n", name)
 			u = User{ID: bson.NewObjectId(), GoogleID: gID}
 		} else {
 			return "", err
@@ -84,8 +84,6 @@ func (ds *dataStore) UpsertUser(gID, name, picture string) (id bson.ObjectId, er
 	// If we're here then we have a complete User and can now update it.
 	u.Name = name
 	u.Picture = picture
-
-	spew.Dump(u)
 
 	if _, err := ds.userCol().UpsertId(u.ID, u); err != nil {
 		return "", err

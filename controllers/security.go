@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
+	"time"
+
+	"gopkg.in/mgo.v2/bson"
 
 	"github.com/davidamey/coffeeround-api/models"
+	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/ericchiang/oidc"
 	"github.com/gin-gonic/gin"
 )
@@ -54,7 +59,7 @@ func (sc *securityController) Login(c *gin.Context) {
 		return
 	}
 
-	jwt := models.NewJWT(id.Hex())
+	jwt := newJWT(id)
 
 	log.Printf("UserId: %q, JWT: %q\n", id, jwt)
 	c.String(200, jwt)
@@ -97,7 +102,7 @@ func (sc *securityController) LoginReal(c *gin.Context) {
 		return
 	}
 
-	c.String(200, models.NewJWT(id.Hex()))
+	c.String(200, newJWT(id))
 }
 
 func getTokenFromRequest(r *http.Request) (string, error) {
@@ -112,4 +117,16 @@ func getTokenFromRequest(r *http.Request) (string, error) {
 	}
 
 	return authHeaderParts[1], nil
+}
+
+func newJWT(id bson.ObjectId) string {
+	signingKey := []byte(os.Getenv("SIGNING_KEY"))
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"exp": time.Now().Add(time.Hour * 24).Unix(),
+		"id":  id,
+	})
+
+	ts, _ := token.SignedString(signingKey)
+
+	return ts
 }
